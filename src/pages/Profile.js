@@ -3,13 +3,14 @@ import NavBar from '../components/NavBar';
 import {auth} from '../routes';
 
 
-function Home(){
+function Profile(){
     if(auth.data.loggedIn){
         return(
-            <div className="Home">
+            <div className="Profile">
                 <NavBar></NavBar>
                 <div className="HomeContent">
-                    <h1>Welcome to Homepage</h1>
+                    <h1>{auth.data.name}</h1>
+                    <h3>{auth.data.email}</h3>
                 </div>
             </div>
         )
@@ -19,4 +20,4 @@ function Home(){
     
 }
 
-export default Home;
+export default Profile;

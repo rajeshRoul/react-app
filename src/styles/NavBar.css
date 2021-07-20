@@ -1,0 +1,8 @@
+.Navbar{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    padding: 10px 0;
+    background-color: aquamarine;
+    color: white;
+}

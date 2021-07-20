@@ -1,8 +1,10 @@
 import '../styles/SignInOrUp.css';
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 import SignIn from './SignIn';
 import Button from '../components/Button';
 import TextInput from '../components/TextInput';
+import {auth} from '../routes';
 
 class SignUp extends React.Component {
 
@@ -18,6 +20,8 @@ class SignUp extends React.Component {
       logInPassword: '',
       loggedIn: false
     }
+    auth.updateData(this.state);
+    this.props.history.push('/SignUp');
   }
 
   handleLogInName = (e)=>{
@@ -33,6 +37,9 @@ class SignUp extends React.Component {
       return (
         this.setState({
           loggedIn : true
+        }, function(){
+          auth.updateData(this.state);
+          <Redirect to="/Home" />;
         })
       )
     }
@@ -53,6 +60,8 @@ class SignUp extends React.Component {
     this.setState({
       signedUp : true,
       title : 'Log In'
+    }, function(){
+      auth.updateData(this.state);
     })
   }
 

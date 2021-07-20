@@ -16,7 +16,7 @@ function SignIn(props) {
                 <form>
                     <TextInput type="email" placeholder="Your Email" value={props.logInEmail} handleChange={props.handleLogInName}></TextInput>
                     <TextInput type="password" placeholder="Your password" value={props.logInPassword} handleChange={props.handleLogInPassword}></TextInput>
-                    <Button handleClick={props.handleLogIn} value="Log In"></Button>
+                    <Button handleClick={props.handleLogIn} value="LogIn"></Button>
                 </form>
             </div>
         );
