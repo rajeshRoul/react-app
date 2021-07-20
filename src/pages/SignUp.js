@@ -1,6 +1,8 @@
-import './SignInOrUp.css';
+import '../styles/SignInOrUp.css';
 import React from 'react';
 import SignIn from './SignIn';
+import Button from '../components/Button';
+import TextInput from '../components/TextInput';
 
 class SignUp extends React.Component {
 
@@ -16,24 +18,17 @@ class SignUp extends React.Component {
       logInPassword: '',
       loggedIn: false
     }
-    this.handleSignUp = this.handleSignUp.bind(this);
-    this.handleName = this.handleName.bind(this);
-    this.handleEmail = this.handleEmail.bind(this);
-    this.handlePassword = this.handlePassword.bind(this);
-    this.handleLogIn = this.handleLogIn.bind(this);
-    this.handleLogInName = this.handleLogInName.bind(this);
-    this.handleLogInPassword = this.handleLogInPassword.bind(this);
   }
 
-  handleLogInName(e){
+  handleLogInName = (e)=>{
     this.setState({logInEmail: e.target.value});
   }
 
-  handleLogInPassword(e){
+  handleLogInPassword = (e)=>{
     this.setState({logInPassword: e.target.value});
   }
 
-  handleLogIn(){
+  handleLogIn = () => {
     if(this.state.email === this.state.logInEmail && this.state.password === this.state.logInPassword){
       return (
         this.setState({
@@ -48,7 +43,7 @@ class SignUp extends React.Component {
     )
   }
 
-  handleSignUp(){
+  handleSignUp = () => {
     const {name, email, password} = this.state;
     if(!name || !email || !password){
       return (this.setState({
@@ -61,15 +56,15 @@ class SignUp extends React.Component {
     })
   }
 
-  handleName(e){
+  handleName = (e)=>{
     this.setState({name: e.target.value});
   }
 
-  handleEmail(e){
+  handleEmail = (e)=>{
     this.setState({email: e.target.value});
   }
 
-  handlePassword(e){
+  handlePassword = (e)=>{
     this.setState({password: e.target.value});
   }
 
@@ -79,10 +74,10 @@ class SignUp extends React.Component {
         <div className="App">
           <h1>{this.state.title}</h1>
           <form>
-              <input type="text" name="name" placeholder="Your Name" value={this.state.name} onChange={this.handleName}></input>
-              <input type="email" name="email" placeholder="Your Email" value={this.state.email} onChange={this.handleEmail}></input>
-              <input type="password" name="password" placeholder="Your password" value={this.state.password} onChange={this.handlePassword}></input>
-              <button type="button" onClick={this.handleSignUp}>Sign Up</button>
+            <TextInput type="text" placeholder="Your Name" value={this.state.name} handleChange={this.handleName}></TextInput>
+            <TextInput type="email" placeholder="Your Email" value={this.state.email} handleChange={this.handleEmail}></TextInput>
+            <TextInput type="password" placeholder="Your password" value={this.state.password} handleChange={this.handlePassword}></TextInput>
+            <Button handleClick={this.handleSignUp} value="SignUp"></Button>
           </form>
         </div>
       )
@@ -96,6 +91,7 @@ class SignUp extends React.Component {
         handleLogIn = {this.handleLogIn}
         loggedIn = {this.state.loggedIn}
         username = {this.state.name}
+        signedUp = {this.state.signedUp}
       ></SignIn>
       );
     }

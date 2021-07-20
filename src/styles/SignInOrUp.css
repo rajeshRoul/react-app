@@ -16,20 +16,3 @@ form{
   border-radius: 5px;
   box-shadow: 0 0 10px 3px rgba(27, 27, 27, 0.473);
 }
-
-input{
-  outline: none;
-  font-size: 1.5rem;
-  border: none;
-  border-bottom: 2px solid black;
-  margin-bottom: 30px;
-}
-button{
-  background-color: green;
-  font-size: 1.5rem;
-  color: white;
-  border-radius: 3px;
-  outline: none;
-  border: 1px solid black;
-  padding: 2px 5px;
-}
