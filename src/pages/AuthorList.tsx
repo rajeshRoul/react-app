@@ -1,6 +1,6 @@
 import React, { ReactElement, useEffect } from 'react'
 import { connect } from 'react-redux'
-import { fetchAuthors } from '../util/authorActions'
+import { fetchAuthors } from '../util/Redux/authorActions'
 import NavBar from '../components/NavBar'
 import Author from '../components/Author'
 import '../styles/AuthorList.css'
