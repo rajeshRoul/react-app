@@ -12,6 +12,9 @@ function NavBar(): ReactElement {
                 <Link to="/Profile">Profile</Link>
             </div>
             <div>
+                <Link to="/AuthorList">Author List</Link>
+            </div>
+            <div>
                 <Link to="/SignUp">SignOut</Link>
             </div>
         </div>

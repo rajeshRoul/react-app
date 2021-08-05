@@ -3,6 +3,7 @@ import { Route, Switch, Redirect } from 'react-router-dom'
 import Home from './pages/Home'
 import SignUp from './pages/SignUp'
 import Profile from './pages/Profile'
+import AuthorList from './pages/AuthorList'
 
 type Authentication = {
     name: string
@@ -50,6 +51,7 @@ export const Routes = (): ReactElement => (
                 <Redirect to="/SignIn" />
             </Route>
             <Route exact path="/Profile" component={Profile} />
+            <Route exact path="/AuthorList" component={AuthorList} />
             <Route exact path="/SignUp" component={SignUp} />
             <Route exact path="/SignIn" component={SignUp} />
         </Switch>
