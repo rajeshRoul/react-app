@@ -1,10 +1,11 @@
-import React, { ReactElement } from 'react'
+import React, { ReactElement, Suspense } from 'react'
 import '../styles/Home.css'
 import { createStore } from 'redux'
 import { Redirect } from 'react-router-dom'
-import NavBar from '../components/NavBar'
 import { auth } from '../routes'
 import { ThemeContext } from '../util/themeContext'
+
+const NavBar = React.lazy(() => import('../components/NavBar'))
 
 function counterReducer(
     state = { value: 0 },
@@ -48,7 +49,9 @@ class Home extends React.Component<any, { value: number }> {
         if (auth.data.loggedIn) {
             return (
                 <div className={`Home ${theme === 'Dark' && 'DarkHome'}`}>
-                    <NavBar />
+                    <Suspense fallback={<div>Loading...</div>}>
+                        <NavBar />
+                    </Suspense>
                     <div className="HomeContent">
                         <h1>Welcome to Homepage</h1>
                         <div id="Counter">

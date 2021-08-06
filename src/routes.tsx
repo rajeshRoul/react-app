@@ -1,9 +1,10 @@
-import React, { ReactElement } from 'react'
+import React, { ReactElement, lazy, Suspense } from 'react'
 import { Route, Switch, Redirect } from 'react-router-dom'
-import Home from './pages/Home'
-import SignUp from './pages/SignUp'
-import Profile from './pages/Profile'
-import AuthorList from './pages/AuthorList'
+
+const Home = lazy(() => import('./pages/Home'))
+const SignUp = lazy(() => import('./pages/SignUp'))
+const Profile = lazy(() => import('./pages/Profile'))
+const AuthorList = lazy(() => import('./pages/AuthorList'))
 
 type Authentication = {
     name: string
@@ -41,7 +42,7 @@ export const auth = new Auth({
 })
 
 export const Routes = (): ReactElement => (
-    <div>
+    <Suspense fallback={<div>Loading...</div>}>
         <Switch>
             <Route exact path="/Home" component={Home} />
             <Route exact path="/">
@@ -55,5 +56,5 @@ export const Routes = (): ReactElement => (
             <Route exact path="/SignUp" component={SignUp} />
             <Route exact path="/SignIn" component={SignUp} />
         </Switch>
-    </div>
+    </Suspense>
 )

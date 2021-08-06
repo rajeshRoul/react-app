@@ -1,13 +1,14 @@
 import '../styles/SignInOrUp.css'
-import React, { ReactElement } from 'react'
+import React, { ReactElement, Suspense } from 'react'
 import { Redirect } from 'react-router-dom'
-import SignIn from './SignIn'
 import Button from '../components/Button'
 import ToggleButton from '../components/ToggleButton'
 import TextInput from '../components/TextInput'
 import { auth } from '../routes'
 import type { Authentication } from '../routes'
 import { ThemeContext } from '../util/themeContext'
+
+const SignIn = React.lazy(() => import('./SignIn'))
 
 class SignUp extends React.Component<any, Authentication> {
     constructor(props: any) {
@@ -132,16 +133,18 @@ class SignUp extends React.Component<any, Authentication> {
             )
         }
         return (
-            <SignIn
-                title={title}
-                logInEmail={logInEmail}
-                logInPassword={logInPassword}
-                handleLogInName={this.handleLogInName}
-                handleLogInPassword={this.handleLogInPassword}
-                handleLogIn={this.handleLogIn}
-                loggedIn={loggedIn}
-                signedUp={signedUp}
-            />
+            <Suspense fallback={<div>Loading...</div>}>
+                <SignIn
+                    title={title}
+                    logInEmail={logInEmail}
+                    logInPassword={logInPassword}
+                    handleLogInName={this.handleLogInName}
+                    handleLogInPassword={this.handleLogInPassword}
+                    handleLogIn={this.handleLogIn}
+                    loggedIn={loggedIn}
+                    signedUp={signedUp}
+                />
+            </Suspense>
         )
     }
 }

@@ -1,11 +1,12 @@
-import React, { ReactElement, useContext } from 'react'
+import React, { ReactElement, useContext, Suspense } from 'react'
 import '../styles/SignInOrUp.css'
 import { Redirect } from 'react-router-dom'
-import Home from './Home'
 import Button from '../components/Button'
 import TextInput from '../components/TextInput'
 import ToggleButton from '../components/ToggleButton'
 import { ThemeContext } from '../util/themeContext'
+
+const Home = React.lazy(() => import('./Home'))
 
 type SigninProps = {
     loggedIn: boolean
@@ -63,7 +64,11 @@ function SignIn(props: SigninProps): ReactElement {
             </div>
         )
     }
-    return <Home />
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <Home />
+        </Suspense>
+    )
 }
 
 export default SignIn

@@ -12,9 +12,9 @@ function ToggleButton(props: TogglePropType): ReactElement {
         <div className="ToggleButton">
             <label className="switch">
                 {theme === 'Dark' ? (
-                    <input type="checkbox" onClick={handleToggle} checked />
+                    <input type="checkbox" onChange={handleToggle} checked />
                 ) : (
-                    <input type="checkbox" onClick={handleToggle} />
+                    <input type="checkbox" onChange={handleToggle} />
                 )}
 
                 <span className="slider round" />
