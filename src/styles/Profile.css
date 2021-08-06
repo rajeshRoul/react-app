@@ -1,0 +1,13 @@
+.ProfileContent{
+    width:100%;
+    height:100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.ProfileDark{
+    background-color: rgb(29, 29, 29);
+    color: white;
+}

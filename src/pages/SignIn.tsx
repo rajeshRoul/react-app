@@ -1,9 +1,11 @@
-import React, { ReactElement } from 'react'
+import React, { ReactElement, useContext } from 'react'
 import '../styles/SignInOrUp.css'
 import { Redirect } from 'react-router-dom'
 import Home from './Home'
 import Button from '../components/Button'
 import TextInput from '../components/TextInput'
+import ToggleButton from '../components/ToggleButton'
+import { ThemeContext } from '../util/themeContext'
 
 type SigninProps = {
     loggedIn: boolean
@@ -28,12 +30,14 @@ function SignIn(props: SigninProps): ReactElement {
         handleLogInName,
     } = props
 
+    const { theme, toggleTheme } = useContext(ThemeContext)
+
     if (!signedUp) {
         return <Redirect to="/SignUp" />
     }
     if (!loggedIn) {
         return (
-            <div className="App">
+            <div className={`App ${theme === 'Dark' && 'DarkModeSign'}`}>
                 <h1>{title}</h1>
                 <form>
                     <TextInput
@@ -48,7 +52,13 @@ function SignIn(props: SigninProps): ReactElement {
                         value={logInPassword}
                         handleChange={handleLogInPassword}
                     />
-                    <Button handleClick={handleLogIn} value="LogIn" />
+                    <div className="ActionButtons">
+                        <ToggleButton
+                            theme={theme}
+                            handleToggle={toggleTheme}
+                        />
+                        <Button handleClick={handleLogIn} value="LogIn" />
+                    </div>
                 </form>
             </div>
         )

@@ -3,9 +3,11 @@ import React, { ReactElement } from 'react'
 import { Redirect } from 'react-router-dom'
 import SignIn from './SignIn'
 import Button from '../components/Button'
+import ToggleButton from '../components/ToggleButton'
 import TextInput from '../components/TextInput'
 import { auth } from '../routes'
 import type { Authentication } from '../routes'
+import { ThemeContext } from '../util/themeContext'
 
 class SignUp extends React.Component<any, Authentication> {
     constructor(props: any) {
@@ -91,9 +93,10 @@ class SignUp extends React.Component<any, Authentication> {
             logInPassword,
             loggedIn,
         } = this.state
+        const { theme, toggleTheme } = this.context
         if (!signedUp) {
             return (
-                <div className="App">
+                <div className={`App ${theme === 'Dark' && 'DarkModeSign'}`}>
                     <h1>{title}</h1>
                     <form>
                         <TextInput
@@ -114,10 +117,16 @@ class SignUp extends React.Component<any, Authentication> {
                             value={password}
                             handleChange={this.handlePassword}
                         />
-                        <Button
-                            handleClick={this.handleSignUp}
-                            value="SignUp"
-                        />
+                        <div className="ActionButtons">
+                            <ToggleButton
+                                theme={theme}
+                                handleToggle={toggleTheme}
+                            />
+                            <Button
+                                handleClick={this.handleSignUp}
+                                value="SignUp"
+                            />
+                        </div>
                     </form>
                 </div>
             )
@@ -136,5 +145,7 @@ class SignUp extends React.Component<any, Authentication> {
         )
     }
 }
+
+SignUp.contextType = ThemeContext
 
 export default SignUp

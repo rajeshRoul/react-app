@@ -6,6 +6,13 @@
 }
 
 .Author img{
-    width: 500px;
-    height: 450px;
+    width: 450px;
+    height: 350px;
+}
+
+@media screen and (max-width: 460px) {
+    .Author img{
+        width: 100%;
+        height: auto;
+    }
 }

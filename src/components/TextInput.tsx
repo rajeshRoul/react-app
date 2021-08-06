@@ -1,5 +1,6 @@
 import '../styles/TextInput.css'
-import React, { ReactElement } from 'react'
+import React, { ReactElement, useContext } from 'react'
+import { ThemeContext } from '../util/themeContext'
 
 type TextInputPropType = {
     type: string
@@ -10,9 +11,10 @@ type TextInputPropType = {
 
 function TextInput(props: TextInputPropType): ReactElement {
     const { type, placeholder, value, handleChange } = props
+    const { theme } = useContext(ThemeContext)
     return (
         <input
-            className="TextInput"
+            className={`TextInput ${theme === 'Dark' && 'DarkTextInput'}`}
             type={type}
             placeholder={placeholder}
             value={value}

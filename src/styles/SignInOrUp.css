@@ -16,3 +16,20 @@ form {
     border-radius: 5px;
     box-shadow: 0 0 10px 3px rgba(27, 27, 27, 0.473);
 }
+
+.ActionButtons{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.DarkModeSign{
+    background-color: rgb(15, 15, 15);
+}
+.DarkModeSign h1{
+    color: white
+}
+
+.DarkModeSign form{
+    background-color: rgb(65, 65, 65);
+}

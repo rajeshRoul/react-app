@@ -1,5 +1,16 @@
+.AuthorsPage{
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
 .Authors{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
+}
+
+.DarkAuthorPage{
+    background-color: rgb(29, 29, 29);
+    color: white;
 }

@@ -4,4 +4,13 @@
     border: none;
     border-bottom: 2px solid black;
     margin-bottom: 30px;
+    background-color: transparent;
+}
+
+.DarkTextInput{
+    color: white
+}
+
+.DarkTextInput::placeholder{
+    color: rgb(192, 192, 192);
 }

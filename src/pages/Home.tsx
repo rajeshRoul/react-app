@@ -4,6 +4,7 @@ import { createStore } from 'redux'
 import { Redirect } from 'react-router-dom'
 import NavBar from '../components/NavBar'
 import { auth } from '../routes'
+import { ThemeContext } from '../util/themeContext'
 
 function counterReducer(
     state = { value: 0 },
@@ -20,10 +21,6 @@ function counterReducer(
 }
 
 const store = createStore(counterReducer)
-
-// function getCounterValue(): number {
-//     return store.getState().value
-// }
 
 class Home extends React.Component<any, { value: number }> {
     constructor(props: any) {
@@ -46,10 +43,11 @@ class Home extends React.Component<any, { value: number }> {
     }
 
     render(): ReactElement {
+        const { theme } = this.context
         const { value } = this.state
         if (auth.data.loggedIn) {
             return (
-                <div className="Home">
+                <div className={`Home ${theme === 'Dark' && 'DarkHome'}`}>
                     <NavBar />
                     <div className="HomeContent">
                         <h1>Welcome to Homepage</h1>
@@ -75,5 +73,7 @@ class Home extends React.Component<any, { value: number }> {
         return <Redirect to="/SignIn" />
     }
 }
+
+Home.contextType = ThemeContext
 
 export default Home
