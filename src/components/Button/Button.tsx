@@ -1,4 +1,4 @@
-import '../styles/Button.css'
+import './Button.css'
 import React, { ReactElement } from 'react'
 
 type ButtonPropType = {

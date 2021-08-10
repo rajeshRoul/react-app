@@ -1,12 +1,12 @@
-import '../styles/SignInOrUp.css'
+import './SignInOrUp.css'
 import React, { ReactElement, Suspense } from 'react'
 import { Redirect } from 'react-router-dom'
-import Button from '../components/Button'
-import ToggleButton from '../components/ToggleButton'
-import TextInput from '../components/TextInput'
-import { auth } from '../routes'
-import type { Authentication } from '../routes'
-import { ThemeContext } from '../util/themeContext'
+import Button from '../../components/Button/Button'
+import ToggleButton from '../../components/ToggleButton/ToggleButton'
+import TextInput from '../../components/TextInput/TextInput'
+import { auth } from '../../routes'
+import type { Authentication } from '../../routes'
+import { ThemeContext } from '../../util/themeContext'
 
 const SignIn = React.lazy(() => import('./SignIn'))
 

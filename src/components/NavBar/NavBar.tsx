@@ -1,8 +1,8 @@
 import React, { ReactElement, useContext } from 'react'
 import { Link } from 'react-router-dom'
-import '../styles/NavBar.css'
-import ToggleButton from './ToggleButton'
-import { ThemeContext } from '../util/themeContext'
+import './NavBar.css'
+import ToggleButton from '../ToggleButton/ToggleButton'
+import { ThemeContext } from '../../util/themeContext'
 
 function NavBar(): ReactElement {
     const { theme, toggleTheme } = useContext(ThemeContext)

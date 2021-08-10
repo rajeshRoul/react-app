@@ -1,11 +1,11 @@
 import React, { ReactElement, Suspense } from 'react'
-import '../styles/Home.css'
+import './Home.css'
 import { createStore } from 'redux'
 import { Redirect } from 'react-router-dom'
-import { auth } from '../routes'
-import { ThemeContext } from '../util/themeContext'
+import { auth } from '../../routes'
+import { ThemeContext } from '../../util/themeContext'
 
-const NavBar = React.lazy(() => import('../components/NavBar'))
+const NavBar = React.lazy(() => import('../../components/NavBar/NavBar'))
 
 function counterReducer(
     state = { value: 0 },

@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react'
-import '../styles/Author.css'
+import './Author.css'
 
 function Author(props: { url: string; name: string }): ReactElement {
     const { url, name } = props

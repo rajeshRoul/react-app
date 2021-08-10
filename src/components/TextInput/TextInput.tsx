@@ -1,6 +1,6 @@
-import '../styles/TextInput.css'
+import './TextInput.css'
 import React, { ReactElement, useContext } from 'react'
-import { ThemeContext } from '../util/themeContext'
+import { ThemeContext } from '../../util/themeContext'
 
 type TextInputPropType = {
     type: string

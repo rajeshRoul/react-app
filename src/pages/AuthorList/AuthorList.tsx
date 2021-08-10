@@ -1,12 +1,12 @@
 /* eslint-disable no-nested-ternary */
 import React, { ReactElement, useEffect, useContext, Suspense } from 'react'
 import { connect } from 'react-redux'
-import { fetchAuthors } from '../util/Redux/authorActions'
-import Author from '../components/Author'
-import '../styles/AuthorList.css'
-import { ThemeContext } from '../util/themeContext'
+import { fetchAuthors } from '../../util/Redux/authorActions'
+import Author from '../../components/Author/Author'
+import './AuthorList.css'
+import { ThemeContext } from '../../util/themeContext'
 
-const NavBar = React.lazy(() => import('../components/NavBar'))
+const NavBar = React.lazy(() => import('../../components/NavBar/NavBar'))
 
 function AuthorList(props: any): ReactElement {
     const { authorsData, fetchData } = props

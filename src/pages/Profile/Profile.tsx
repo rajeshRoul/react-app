@@ -1,10 +1,10 @@
 import React, { ReactElement, useContext, Suspense } from 'react'
 import { Redirect } from 'react-router-dom'
-import { auth } from '../routes'
-import { ThemeContext } from '../util/themeContext'
-import '../styles/Profile.css'
+import { auth } from '../../routes'
+import { ThemeContext } from '../../util/themeContext'
+import './Profile.css'
 
-const NavBar = React.lazy(() => import('../components/NavBar'))
+const NavBar = React.lazy(() => import('../../components/NavBar/NavBar'))
 
 function Profile(): ReactElement {
     const { theme } = useContext(ThemeContext)

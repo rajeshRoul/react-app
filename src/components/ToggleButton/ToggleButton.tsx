@@ -1,4 +1,4 @@
-import '../styles/ToggleButton.css'
+import './ToggleButton.css'
 import React, { ReactElement } from 'react'
 
 type TogglePropType = {

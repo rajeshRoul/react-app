@@ -1,10 +1,10 @@
 import React, { ReactElement, lazy, Suspense } from 'react'
 import { Route, Switch, Redirect } from 'react-router-dom'
 
-const Home = lazy(() => import('./pages/Home'))
-const SignUp = lazy(() => import('./pages/SignUp'))
-const Profile = lazy(() => import('./pages/Profile'))
-const AuthorList = lazy(() => import('./pages/AuthorList'))
+const Home = lazy(() => import('./pages/Home/Home'))
+const SignUp = lazy(() => import('./pages/SignInSignUp/SignUp'))
+const Profile = lazy(() => import('./pages/Profile/Profile'))
+const AuthorList = lazy(() => import('./pages/AuthorList/AuthorList'))
 
 type Authentication = {
     name: string
