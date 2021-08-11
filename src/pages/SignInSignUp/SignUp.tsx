@@ -7,7 +7,6 @@ import TextInput from '../../components/TextInput/TextInput'
 import { auth } from '../../routes'
 import type { Authentication } from '../../routes'
 import { ThemeContext } from '../../util/themeContext'
-import firebase from '../../util/firebase/firebase.js'
 
 const SignIn = React.lazy(() => import('./SignIn'))
 
@@ -26,13 +25,6 @@ class SignUp extends React.Component<any, Authentication> {
         }
         auth.updateData(this.state)
         props.history.push('/SignUp')
-    }
-
-    componentDidMount(): any {
-        const msg = firebase.messaging()
-        msg.getToken().then((data) => {
-            console.warn('token', data)
-        })
     }
 
     handleLogInName = (e: any): void => {

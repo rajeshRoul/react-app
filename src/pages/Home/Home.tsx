@@ -4,6 +4,7 @@ import { createStore } from 'redux'
 import { Redirect } from 'react-router-dom'
 import { auth } from '../../routes'
 import { ThemeContext } from '../../util/themeContext'
+import firebase from '../../util/firebase/firebase.js'
 
 const NavBar = React.lazy(() => import('../../components/NavBar/NavBar'))
 
@@ -33,6 +34,13 @@ class Home extends React.Component<any, { value: number }> {
 
     componentDidMount(): void {
         store.subscribe(() => this.setState({ value: store.getState().value }))
+        const msg = firebase.messaging()
+        msg.getToken({
+            vapidKey:
+                'BGhXg7U9kVPQRPcX3c5RKGJY7kAJIe6N62e0gocSYEjT7Fd_LgIDumMzHoGLaRthKCD3oVwz_6nicTKOUSAWEpo',
+        }).then((data) => {
+            console.warn('token', data)
+        })
     }
 
     decrementCounter = (): void => {

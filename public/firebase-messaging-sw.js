@@ -15,7 +15,6 @@ if (firebase.messaging.isSupported()) {
 
     const messaging = firebase.messaging()
     if ('serviceWorker' in navigator) {
-        console.log('in the service worker')
         navigator.serviceWorker
             .register('../firebase-messaging-sw.js')
             .then(function (registration) {
@@ -23,6 +22,11 @@ if (firebase.messaging.isSupported()) {
                     'Registration successful, scope is:',
                     registration.scope
                 )
+                messaging.getToken({
+                    vapidKey:
+                        'BGhXg7U9kVPQRPcX3c5RKGJY7kAJIe6N62e0gocSYEjT7Fd_LgIDumMzHoGLaRthKCD3oVwz_6nicTKOUSAWEpo',
+                    serviceWorkerRegistration: registration,
+                })
             })
             .catch(function (err) {
                 console.log('Service worker registration failed, error:', err)
