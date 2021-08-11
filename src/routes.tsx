@@ -17,6 +17,8 @@ type Authentication = {
     loggedIn: boolean
 }
 
+// class for Authentication
+// It will store user credentials for login and signup
 class Auth {
     data: Authentication
 
@@ -30,6 +32,7 @@ class Auth {
 }
 
 export type { Authentication }
+// Exporting Authentication Object so that it is accessible on all pages
 export const auth = new Auth({
     name: '',
     email: '',
