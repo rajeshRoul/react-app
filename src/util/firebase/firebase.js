@@ -9,7 +9,8 @@ const firebaseConfig = {
     appId: '1:935346554286:web:110845cc05a7cb2e99b43f',
 }
 // Initialize Firebase
-if (firebase.messaging.isSupported()) {
-    firebase.initializeApp(firebaseConfig)
-}
+firebase.initializeApp(firebaseConfig)
+const socialAuth = firebase.auth()
+const googleAuthProvider = new firebase.auth.GoogleAuthProvider()
+export { socialAuth, googleAuthProvider }
 export default firebase

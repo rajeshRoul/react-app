@@ -1,10 +1,17 @@
-import React, { ReactElement, Suspense } from 'react'
+import React, {
+    ReactElement,
+    Suspense,
+    useState,
+    useEffect,
+    useContext,
+} from 'react'
 import './Home.css'
 import { createStore } from 'redux'
 import { Redirect } from 'react-router-dom'
+import { useAuthState } from 'react-firebase-hooks/auth'
+import firebase, { socialAuth } from '../../util/firebase/firebase.js'
 import { auth } from '../../routes'
 import { ThemeContext } from '../../util/themeContext'
-import firebase from '../../util/firebase/firebase.js'
 
 const NavBar = React.lazy(() => import('../../components/NavBar/NavBar'))
 
@@ -24,67 +31,53 @@ function counterReducer(
 
 const store = createStore(counterReducer)
 
-class Home extends React.Component<any, { value: number }> {
-    constructor(props: any) {
-        super(props)
-        this.state = {
-            value: 0,
-        }
-    }
+function Home(): ReactElement {
+    const [counter, setCounter] = useState(0)
+    const [user] = useAuthState(socialAuth)
+    const msg = firebase.messaging()
 
-    componentDidMount(): void {
-        store.subscribe(() => this.setState({ value: store.getState().value }))
-        const msg = firebase.messaging()
+    useEffect(() => {
+        store.subscribe(() => setCounter(store.getState().value))
         msg.getToken({
             vapidKey:
+                // eslint-disable-next-line max-len
                 'BGhXg7U9kVPQRPcX3c5RKGJY7kAJIe6N62e0gocSYEjT7Fd_LgIDumMzHoGLaRthKCD3oVwz_6nicTKOUSAWEpo',
         }).then((data) => {
+            // eslint-disable-next-line no-console
             console.warn('token', data)
         })
-    }
+    }, [msg])
 
-    decrementCounter = (): void => {
+    const decrementCounter = (): void => {
         store.dispatch({ type: 'counter/decremented' })
     }
 
-    incrementCounter = (): void => {
+    const incrementCounter = (): void => {
         store.dispatch({ type: 'counter/incremented' })
     }
 
-    render(): ReactElement {
-        const { theme } = this.context
-        const { value } = this.state
-        if (auth.data.loggedIn) {
-            return (
-                <div className={`Home ${theme === 'Dark' && 'DarkHome'}`}>
-                    <Suspense fallback={<div>Loading...</div>}>
-                        <NavBar />
-                    </Suspense>
-                    <div className="HomeContent">
-                        <h1>Welcome to Homepage</h1>
-                        <div id="Counter">
-                            <button
-                                type="button"
-                                onClick={this.decrementCounter}
-                            >
-                                -
-                            </button>
-                            <h1>{value}</h1>
-                            <button
-                                type="button"
-                                onClick={this.incrementCounter}
-                            >
-                                +
-                            </button>
-                        </div>
-                    </div>
+    const { theme } = useContext(ThemeContext)
+    return auth.data.loggedIn || user ? (
+        <div className={`Home ${theme === 'Dark' && 'DarkHome'}`}>
+            <Suspense fallback={<div>Loading...</div>}>
+                <NavBar />
+            </Suspense>
+            <div className="HomeContent">
+                <h1>Welcome to Homepage</h1>
+                <div id="Counter">
+                    <button type="button" onClick={decrementCounter}>
+                        -
+                    </button>
+                    <h1>{counter}</h1>
+                    <button type="button" onClick={incrementCounter}>
+                        +
+                    </button>
                 </div>
-            )
-        }
-        return <Redirect to="/SignIn" />
-    }
+            </div>
+        </div>
+    ) : (
+        <Redirect to="/SignUp" />
+    )
 }
-
-Home.contextType = ThemeContext
 
 export default Home

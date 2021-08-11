@@ -7,6 +7,8 @@ import TextInput from '../../components/TextInput/TextInput'
 import { auth } from '../../routes'
 import type { Authentication } from '../../routes'
 import { ThemeContext } from '../../util/themeContext'
+import SocialLoginButton from '../../components/SocialLoginButton/SocialLoginButton'
+import { socialAuth, googleAuthProvider } from '../../util/firebase/firebase.js'
 
 const SignIn = React.lazy(() => import('./SignIn'))
 
@@ -83,6 +85,19 @@ class SignUp extends React.Component<any, Authentication> {
         this.setState({ password: e.target.value })
     }
 
+    handleGoogleAuth = (): any => {
+        socialAuth
+            .signInWithPopup(googleAuthProvider)
+            .then(() => {
+                this.setState({
+                    signedUp: true,
+                    loggedIn: true,
+                })
+            })
+            // eslint-disable-next-line no-console
+            .catch((e) => console.log(e))
+    }
+
     render(): ReactElement {
         const {
             signedUp,
@@ -100,6 +115,13 @@ class SignUp extends React.Component<any, Authentication> {
                 <div className={`App ${theme === 'Dark' && 'DarkModeSign'}`}>
                     <h1>{title}</h1>
                     <form>
+                        <div className="SocialLoginContainer">
+                            <SocialLoginButton
+                                name="Google Login"
+                                handleClick={this.handleGoogleAuth}
+                                logoUrl="https://image.flaticon.com/icons/png/512/281/281764.png"
+                            />
+                        </div>
                         <TextInput
                             type="text"
                             placeholder="Your Name"

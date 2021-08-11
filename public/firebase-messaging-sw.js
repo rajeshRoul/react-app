@@ -1,7 +1,7 @@
 /* eslint-disable no-restricted-globals */
 /* eslint-disable no-undef */
-importScripts('https://www.gstatic.com/firebasejs/3.5.0/firebase-app.js')
-importScripts('https://www.gstatic.com/firebasejs/3.5.0/firebase-messaging.js')
+importScripts('https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js')
+importScripts('https://www.gstatic.com/firebasejs/8.3.1/firebase-messaging.js')
 
 if (firebase.messaging.isSupported()) {
     firebase.initializeApp({
@@ -17,22 +17,26 @@ if (firebase.messaging.isSupported()) {
     if ('serviceWorker' in navigator) {
         navigator.serviceWorker
             .register('../firebase-messaging-sw.js')
-            .then(function (registration) {
+            .then((registration) => {
+                // eslint-disable-next-line no-console
                 console.log(
                     'Registration successful, scope is:',
                     registration.scope
                 )
                 messaging.getToken({
                     vapidKey:
+                        // eslint-disable-next-line max-len
                         'BGhXg7U9kVPQRPcX3c5RKGJY7kAJIe6N62e0gocSYEjT7Fd_LgIDumMzHoGLaRthKCD3oVwz_6nicTKOUSAWEpo',
                     serviceWorkerRegistration: registration,
                 })
             })
-            .catch(function (err) {
+            .catch((err) => {
+                // eslint-disable-next-line no-console
                 console.log('Service worker registration failed, error:', err)
             })
     }
     messaging.setBackgroundMessageHandler((payload) => {
+        // eslint-disable-next-line no-console
         console.log(
             '[firebase-messaging-sw.js] Received background message ',
             payload
