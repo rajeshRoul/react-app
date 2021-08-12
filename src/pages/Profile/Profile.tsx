@@ -19,6 +19,11 @@ function Profile(): ReactElement {
                     <NavBar />
                 </Suspense>
                 <div className="ProfileContent">
+                    {user && typeof user.photoURL === 'string' ? (
+                        <img src={user?.photoURL} alt="" />
+                    ) : (
+                        <p>Profile Image not available</p>
+                    )}
                     <h1>{user ? user.displayName : name}</h1>
                     <h3>{user ? user.email : email}</h3>
                 </div>

@@ -18,7 +18,7 @@ function NavBar(): ReactElement {
                 <Link to="/AuthorList">Author List</Link>
             </div>
             <div className="Link">
-                <Link to="/SignUp">SignOut</Link>
+                <Link to="/SignOut">SignOut</Link>
             </div>
             <div>
                 <ToggleButton theme={theme} handleToggle={toggleTheme} />

@@ -8,7 +8,11 @@ import { auth } from '../../routes'
 import type { Authentication } from '../../routes'
 import { ThemeContext } from '../../util/themeContext'
 import SocialLoginButton from '../../components/SocialLoginButton/SocialLoginButton'
-import { socialAuth, googleAuthProvider } from '../../util/firebase/firebase.js'
+import {
+    socialAuth,
+    googleAuthProvider,
+    fbAuthProvider,
+} from '../../util/firebase/firebase.js'
 
 const SignIn = React.lazy(() => import('./SignIn'))
 
@@ -39,6 +43,11 @@ class SignUp extends React.Component<any, Authentication> {
 
     handleLogIn = (): void => {
         const { email, logInEmail, password, logInPassword } = this.state
+        if (logInEmail === '' || logInPassword === '') {
+            return this.setState({
+                title: 'Enter all the fields',
+            })
+        }
         if (email === logInEmail && password === logInPassword) {
             return this.setState(
                 {
@@ -98,6 +107,19 @@ class SignUp extends React.Component<any, Authentication> {
             .catch((e) => console.log(e))
     }
 
+    handleFbAuth = (): any => {
+        socialAuth
+            .signInWithPopup(fbAuthProvider)
+            .then(() => {
+                this.setState({
+                    signedUp: true,
+                    loggedIn: true,
+                })
+            })
+            // eslint-disable-next-line no-console
+            .catch((e) => this.setState({ title: e.message }))
+    }
+
     render(): ReactElement {
         const {
             signedUp,
@@ -121,7 +143,14 @@ class SignUp extends React.Component<any, Authentication> {
                                 handleClick={this.handleGoogleAuth}
                                 logoUrl="https://image.flaticon.com/icons/png/512/281/281764.png"
                             />
+                            <SocialLoginButton
+                                name="Facebook Login"
+                                handleClick={this.handleFbAuth}
+                                logoUrl="https://image.flaticon.com/icons/png/512/1384/1384053.png"
+                            />
                         </div>
+                        <div className="horizontalLine" />
+                        <h3>Or Register Now</h3>
                         <TextInput
                             type="text"
                             placeholder="Your Name"
@@ -165,6 +194,8 @@ class SignUp extends React.Component<any, Authentication> {
                     handleLogIn={this.handleLogIn}
                     loggedIn={loggedIn}
                     signedUp={signedUp}
+                    handleGoogleAuth={this.handleGoogleAuth}
+                    handleFbAuth={this.handleFbAuth}
                 />
             </Suspense>
         )

@@ -5,6 +5,8 @@ const Home = lazy(() => import('./pages/Home/Home'))
 const SignUp = lazy(() => import('./pages/SignInSignUp/SignUp'))
 const Profile = lazy(() => import('./pages/Profile/Profile'))
 const AuthorList = lazy(() => import('./pages/AuthorList/AuthorList'))
+const SignOut = lazy(() => import('./pages/SignOut/SignOut'))
+const SignIn = lazy(() => import('./pages/SignInSignUp/SignIn'))
 
 type Authentication = {
     name: string
@@ -57,7 +59,8 @@ export const Routes = (): ReactElement => (
             <Route exact path="/Profile" component={Profile} />
             <Route exact path="/AuthorList" component={AuthorList} />
             <Route exact path="/SignUp" component={SignUp} />
-            <Route exact path="/SignIn" component={SignUp} />
+            <Route exact path="/SignIn" component={SignIn} />
+            <Route exact path="/SignOut" component={SignOut} />
         </Switch>
     </Suspense>
 )
