@@ -14,6 +14,7 @@ function TextInput(props: TextInputPropType): ReactElement {
     const { theme } = useContext(ThemeContext)
     return (
         <input
+            data-testid="textInput"
             className={`TextInput ${theme === 'Dark' && 'DarkTextInput'}`}
             type={type}
             placeholder={placeholder}

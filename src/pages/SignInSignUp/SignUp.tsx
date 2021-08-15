@@ -104,7 +104,7 @@ class SignUp extends React.Component<any, Authentication> {
                 })
             })
             // eslint-disable-next-line no-console
-            .catch((e) => console.log(e))
+            .catch(alert)
     }
 
     handleFbAuth = (): any => {

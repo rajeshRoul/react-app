@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should take a snapshot 1`] = `
+<input
+  class="TextInput false"
+  data-testid="textInput"
+  placeholder="test placeholder"
+  type="text"
+  value="test"
+/>
+`;

@@ -10,7 +10,12 @@ type SocialButtonPropType = {
 function SocialLoginButton(props: SocialButtonPropType): ReactElement {
     const { handleClick, logoUrl, name } = props
     return (
-        <button className="SocialButton" type="button" onClick={handleClick}>
+        <button
+            data-testid="socialButton"
+            className="SocialButton"
+            type="button"
+            onClick={handleClick}
+        >
             <img src={logoUrl} alt={name} />
         </button>
     )

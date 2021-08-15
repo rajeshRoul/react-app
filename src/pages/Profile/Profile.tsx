@@ -24,6 +24,7 @@ function Profile(): ReactElement {
                     ) : (
                         <p>Profile Image not available</p>
                     )}
+                    <br />
                     <h1>{user ? user.displayName : name}</h1>
                     <h3>{user ? user.email : email}</h3>
                 </div>

@@ -9,7 +9,12 @@ type ButtonPropType = {
 function Button(props: ButtonPropType): ReactElement {
     const { handleClick, value } = props
     return (
-        <button className="Button" type="button" onClick={handleClick}>
+        <button
+            data-testid="button"
+            className="Button"
+            type="button"
+            onClick={handleClick}
+        >
             {value}
         </button>
     )

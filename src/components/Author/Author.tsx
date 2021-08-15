@@ -4,9 +4,9 @@ import './Author.css'
 function Author(props: { url: string; name: string }): ReactElement {
     const { url, name } = props
     return (
-        <div className="Author">
+        <div data-testid="author" className="Author">
             <img src={url} alt={name} />
-            <h2>{name}</h2>
+            <h2 data-testid="authorName">{name}</h2>
         </div>
     )
 }
