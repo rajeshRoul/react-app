@@ -16,6 +16,8 @@ import {
 
 const SignIn = React.lazy(() => import('./SignIn'))
 
+let unsubscribeSocialAuth: any
+
 class SignUp extends React.Component<any, Authentication> {
     constructor(props: any) {
         super(props)
@@ -31,6 +33,21 @@ class SignUp extends React.Component<any, Authentication> {
         }
         auth.updateData(this.state)
         props.history.push('/SignUp')
+    }
+
+    componentDidMount(): void {
+        unsubscribeSocialAuth = socialAuth.onAuthStateChanged((user) => {
+            if (user) {
+                this.setState({
+                    signedUp: true,
+                    loggedIn: true,
+                })
+            }
+        })
+    }
+
+    componentWillUnmount(): any {
+        unsubscribeSocialAuth()
     }
 
     handleLogInName = (e: any): void => {
@@ -183,22 +200,25 @@ class SignUp extends React.Component<any, Authentication> {
                 </div>
             )
         }
-        return (
-            <Suspense fallback={<div>Loading...</div>}>
-                <SignIn
-                    title={title}
-                    logInEmail={logInEmail}
-                    logInPassword={logInPassword}
-                    handleLogInName={this.handleLogInName}
-                    handleLogInPassword={this.handleLogInPassword}
-                    handleLogIn={this.handleLogIn}
-                    loggedIn={loggedIn}
-                    signedUp={signedUp}
-                    handleGoogleAuth={this.handleGoogleAuth}
-                    handleFbAuth={this.handleFbAuth}
-                />
-            </Suspense>
-        )
+        if (!loggedIn) {
+            return (
+                <Suspense fallback={<div>Loading...</div>}>
+                    <SignIn
+                        title={title}
+                        logInEmail={logInEmail}
+                        logInPassword={logInPassword}
+                        handleLogInName={this.handleLogInName}
+                        handleLogInPassword={this.handleLogInPassword}
+                        handleLogIn={this.handleLogIn}
+                        loggedIn={loggedIn}
+                        signedUp={signedUp}
+                        handleGoogleAuth={this.handleGoogleAuth}
+                        handleFbAuth={this.handleFbAuth}
+                    />
+                </Suspense>
+            )
+        }
+        return <Redirect to="/Home" />
     }
 }
 

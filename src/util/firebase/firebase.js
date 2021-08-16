@@ -1,4 +1,7 @@
-import firebase from 'firebase'
+/* eslint-disable import/no-duplicates */
+import firebase from 'firebase/app'
+import 'firebase/auth'
+import 'firebase/messaging'
 // Firebase Configuration
 const firebaseConfig = {
     apiKey: 'AIzaSyDexo38QT1UX1U9oC-GZT-VBhnezU8mCmg',

@@ -51,7 +51,7 @@ export const Routes = (): ReactElement => (
         <Switch>
             <Route exact path="/Home" component={Home} />
             <Route exact path="/">
-                <Redirect to="/Home" />
+                <Redirect to="/SignUp" />
             </Route>
             <Route exact path="/Logout">
                 <Redirect to="/SignIn" />

@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from 'react'
+import React, { ReactElement, useEffect, useState } from 'react'
 import { createStore } from 'redux'
 import './Counter.css'
 
@@ -20,7 +20,10 @@ const store = createStore(counterReducer)
 
 function Counter(): ReactElement {
     const [counter, setCounter] = useState(0)
-    store.subscribe(() => setCounter(store.getState().value))
+
+    useEffect(() => {
+        return store.subscribe(() => setCounter(store.getState().value))
+    }, [])
 
     const decrementCounter = (): void => {
         store.dispatch({ type: 'counter/decremented' })
