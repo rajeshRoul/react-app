@@ -81,12 +81,46 @@ class SignUp extends React.Component<any, Authentication> {
         })
     }
 
+    validateInput = (): boolean => {
+        const { name, email, password } = this.state
+        if (!new RegExp(/^[a-zA-Z ]{2,30}$/).test(name)) {
+            this.setState({
+                title: 'Please Enter a valid Name',
+            })
+            return false
+        }
+        if (
+            !new RegExp(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}/g).test(email)
+        ) {
+            this.setState({
+                title: 'Please Enter a valid Email',
+            })
+            return false
+        }
+        if (
+            !new RegExp(
+                /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/
+            ).test(password)
+        ) {
+            this.setState({
+                title:
+                    'Password must be of min 8 Characters \n' +
+                    'It must contain at least a symbol, upper and lower case letters and a number',
+            })
+            return false
+        }
+        return true
+    }
+
     handleSignUp = (): void => {
         const { name, email, password } = this.state
         if (!name || !email || !password) {
             return this.setState({
                 title: 'Please Enter all fields',
             })
+        }
+        if (!this.validateInput()) {
+            return undefined
         }
         return this.setState(
             {
