@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import './SignInOrUp.css'
 import React, { ReactElement, Suspense } from 'react'
 import { Redirect } from 'react-router-dom'
@@ -84,17 +85,13 @@ class SignUp extends React.Component<any, Authentication> {
     validateInput = (): boolean => {
         const { name, email, password } = this.state
         if (!new RegExp(/^[a-zA-Z ]{2,30}$/).test(name)) {
-            this.setState({
-                title: 'Please Enter a valid Name',
-            })
+            alert('Please Enter a valid Name')
             return false
         }
         if (
             !new RegExp(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}/g).test(email)
         ) {
-            this.setState({
-                title: 'Please Enter a valid Email',
-            })
+            alert('Please Enter a valid Email')
             return false
         }
         if (
@@ -102,11 +99,10 @@ class SignUp extends React.Component<any, Authentication> {
                 /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/
             ).test(password)
         ) {
-            this.setState({
-                title:
-                    'Password must be of min 8 Characters \n' +
-                    'It must contain at least a symbol, upper and lower case letters and a number',
-            })
+            alert(
+                'Password must be of min 8 Characters \n' +
+                    'It must contain at least a symbol, upper and lower case letters and a number'
+            )
             return false
         }
         return true
